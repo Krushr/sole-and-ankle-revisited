@@ -1,10 +1,12 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { COLORS, QUERIES, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import Icon from "../Icon";
+import UnstyledButton from "../UnstyledButton";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -29,6 +31,17 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <MobileNav>
+          <UnstyledButton>
+            <Icon id="shopping-bag" strokeWidth={2} />
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id="search" strokeWidth={2} />
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id="menu" strokeWidth={2} />
+          </UnstyledButton>
+        </MobileNav>
         <Side />
       </MainHeader>
 
@@ -46,16 +59,49 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  @media ${QUERIES.phoneAndUp} {
+    border-top: 4px solid ${COLORS.gray[900]};
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    border-top: none;
+  }
 `;
 
 const Nav = styled.nav`
-  display: flex;
+  display: none;
   gap: 48px;
   margin: 0px 48px;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`;
+
+const MobileNav = styled.div`
+  display: flex;
+  gap: ${22 / 16}rem;
+
+  @media ${QUERIES.tabletAndUp} {
+    gap: ${40 / 16}rem;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Side = styled.div`
   flex: 1;
+
+  &:last-of-type {
+    display: none;
+
+    @media ${QUERIES.laptopAndUp} {
+      display: revert;
+    }
+  }
 `;
 
 const NavLink = styled.a`
