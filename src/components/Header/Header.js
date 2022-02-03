@@ -63,6 +63,8 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  overflow-x: auto;
+  overflow-y: hidden;
 
   @media ${QUERIES.phoneAndUp} {
     border-top: 4px solid ${COLORS.gray[900]};
@@ -75,7 +77,7 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   display: none;
-  gap: 48px;
+  gap: clamp(1rem, 8.5vw - 5.5rem, 5rem);
   margin: 0px 48px;
 
   @media ${QUERIES.laptopAndUp} {
